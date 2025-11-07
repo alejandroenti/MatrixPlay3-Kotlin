@@ -88,6 +88,7 @@
         android:id="@+id/loginBtnConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:paddingLeft="38dp"
         android:text="@string/login_btn_connect"
         app:layout_constraintBottom_toBottomOf="parent"
