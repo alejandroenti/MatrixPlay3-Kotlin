@@ -9,33 +9,55 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="112dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.014" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="447dp"
-        android:layout_height="276dp"
+        android:id="@+id/cardView"
+        android:layout_width="360dp"
+        android:layout_height="229dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.35000002">
+        app:layout_constraintVertical_bias="0.39">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="@string/login_title_Card"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginBottom="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/loginUsername"
@@ -43,6 +65,35 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/login_username" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="18dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginURL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_url" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/loginBtnConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="38dp"
+        android:text="@string/login_btn_connect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.601"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.895" />
 </androidx.constraintlayout.widget.ConstraintLayout>
