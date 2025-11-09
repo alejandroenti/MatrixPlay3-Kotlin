@@ -9,9 +9,9 @@
     <style name="Theme.MatrixPlay" parent="Base.Theme.MatrixPlay" />
 
     <style name="style_btn">
-        <item name="android:backgroundTint">@color/light_purple</item>
-        <item name="android:textColor">@color/light_gray</item>
-        <item name="strokeColor">@color/light_blue</item>
+        <item name="android:backgroundTint">@color/light_green</item>
+        <item name="android:textColor">@color/light_black</item>
+        <item name="strokeColor">@color/light_yellow</item>
     </style>
 
     <style name="style_title_shadows">
@@ -35,11 +35,11 @@
     <style name="style_cardview_input">
         <item name="boxStrokeColor">@color/light_gray</item>
         <item name="hintTextColor">@color/light_gray</item>
-        <item name="android:textColorHint">@color/light_black</item>
+        <item name="android:textColorHint">@color/light_gray</item>
         <item name="cursorColor">@color/light_yellow</item>
     </style>
     <style name="style_cardview_inputtextfield">
-        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textColor">@color/light_yellow</item>
         <item name="android:textColorHint">@color/light_black</item>
     </style>
 </resources>
