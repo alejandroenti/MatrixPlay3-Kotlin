@@ -4,4 +4,7 @@
     <string name="login_username">Username</string>
     <string name="login_url">URL</string>
     <string name="login_btn_connect">Connect</string>
+    <string name="login_alert_dialog_accept">Accept</string>
+    <string name="login_alert_dialog_message_blank">Fields can not be blank!</string>
+    <string name="login_alert_dialog_message_username">Username must contain 8 characters as maximum</string>
 </resources>

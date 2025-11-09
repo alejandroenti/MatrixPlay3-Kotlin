@@ -1,5 +1,6 @@
 package com.matrixplay3.matrixplay.activites
 
+import android.app.AlertDialog
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
@@ -15,6 +16,8 @@ import com.google.android.material.textfield.TextInputEditText
 import com.matrixplay3.matrixplay.R
 
 class LoginActivity : BaseActivity() {
+
+    private val USERNAME_MAX_LENGTH : Int = 8
 
     private lateinit var username : TextInputEditText
     private lateinit var serverUrl : TextInputEditText
@@ -39,16 +42,21 @@ class LoginActivity : BaseActivity() {
         val bitmap = BitmapFactory.decodeStream( assets.open("logo.png") )
         logo.setImageBitmap( bitmap )
 
-        username.addTextChangedListener {
-            enableBtn(areFieldsFilled())
-        }
-
-        serverUrl.addTextChangedListener {
-            enableBtn(areFieldsFilled())
-        }
-
         btnConnect.setOnClickListener {
-            // Connect To Server
+            // Check Username and URL are not empty
+            if (!areFieldsFilled()) {
+                // Alert Dialog
+                showAlertDialog(R.string.login_alert_dialog_message_blank)
+            }
+            else {
+                // Check Username length
+                if (username.text!!.length <= USERNAME_MAX_LENGTH) {
+                    // Connect To Server
+                }
+                else {
+                    showAlertDialog(R.string.login_alert_dialog_message_username)
+                }
+            }
         }
     }
 
@@ -56,7 +64,13 @@ class LoginActivity : BaseActivity() {
         return !username.text.isNullOrBlank() && !serverUrl.text.isNullOrBlank()
     }
 
-    private fun enableBtn(status : Boolean) {
-        btnConnect.isEnabled = status
+    private fun showAlertDialog(messageId : Int) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.app_name)
+            .setMessage(getString(messageId))
+            .setPositiveButton(R.string.login_alert_dialog_accept) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }
