@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.MatrixPlay" parent="Base.Theme.MatrixPlay" />
+
+    <style name="style_btn">
+        <item name="android:backgroundTint">@color/light_purple</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="strokeColor">@color/light_blue</item>
+    </style>
 </resources>

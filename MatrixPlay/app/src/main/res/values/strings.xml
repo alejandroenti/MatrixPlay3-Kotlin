@@ -3,5 +3,5 @@
     <string name="login_title_Card">Connect to Play!</string>
     <string name="login_username">Username</string>
     <string name="login_url">URL</string>
-    <string name="login_btn_connect">Connect with server</string>
+    <string name="login_btn_connect">Connect</string>
 </resources>

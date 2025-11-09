@@ -84,13 +84,15 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/loginBtnConnect"
+        style="@style/style_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:enabled="false"
-        android:paddingLeft="38dp"
+        android:enabled="true"
         android:text="@string/login_btn_connect"
+        app:strokeWidth="1dp"
+        app:cornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.601"
