@@ -83,18 +83,18 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
+        style="@style/style_cardview"
         android:layout_width="360dp"
         android:layout_height="229dp"
-        style="@style/style_cardview"
         app:cardCornerRadius="12dp"
-        app:cardUseCompatPadding="true"
         app:cardElevation="0dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.63">
+        app:layout_constraintVertical_bias="0.8">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,9 +110,9 @@
                     style="@style/style_cardview_title_shadows"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
                     android:fontFamily="@font/protonerdfontmonoregular"
                     android:gravity="center"
-                    android:layout_margin="12dp"
                     android:padding="6dp"
                     android:shadowDx="-4"
                     android:shadowDy="-4"
@@ -123,9 +123,9 @@
 
                 <TextView
                     android:id="@+id/loginCardViewTitle"
+                    style="@style/style_cardview_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/style_cardview_title"
                     android:layout_margin="12dp"
                     android:fontFamily="@font/protonerdfontmonoregular"
                     android:gravity="center"
@@ -135,13 +135,13 @@
             </FrameLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/style_cardview_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginRight="18dp"
                 android:layout_marginBottom="2dp"
-                style="@style/style_cardview_input"
                 app:boxStrokeErrorColor="@color/red">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -149,7 +149,7 @@
                     style="@style/style_cardview_inputtextfield"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/login_username"/>
+                    android:hint="@string/login_username" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
