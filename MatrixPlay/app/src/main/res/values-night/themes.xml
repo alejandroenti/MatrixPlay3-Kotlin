@@ -19,4 +19,25 @@
     <style name="style_title_foreground">
         <item name="android:textColor">@color/dark_yellow</item>
     </style>
+
+    <style name="style_cardview">
+        <item name="android:backgroundTint">@color/dark_gray</item>
+    </style>
+    <style name="style_cardview_title">
+        <item name="android:textColor">@color/dark_green</item>
+    </style>
+    <style name="style_cardview_title_shadows">
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:shadowColor">@color/dark_yellow</item>
+    </style>
+    <style name="style_cardview_input">
+        <item name="boxStrokeColor">@color/dark_purple</item>
+        <item name="hintTextColor">@color/dark_purple</item>
+        <item name="android:textColorHint">@color/dark_black</item>
+        <item name="cursorColor">@color/dark_blue</item>
+    </style>
+    <style name="style_cardview_inputtextfield">
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textColorHint">@color/dark_black</item>
+    </style>
 </resources>

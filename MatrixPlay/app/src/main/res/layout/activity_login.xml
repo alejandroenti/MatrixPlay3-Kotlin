@@ -7,7 +7,6 @@
     android:id="@+id/login"
     >
 
-
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +19,7 @@
         app:layout_constraintVertical_bias="0.044">
 
         <TextView
-            android:id="@+id/text_shadow_1"
+            android:id="@+id/loginTitleshadow_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/style_title_shadows"
@@ -28,12 +27,12 @@
             android:shadowDx="-4"
             android:shadowDy="-4"
             android:shadowRadius="1"
-            android:text="Matrix Play"
-            android:textSize="40sp"
+            android:text="@string/app_name"
+            android:textSize="40dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_shadow_2"
+            android:id="@+id/loginTitleshadow_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/style_title_shadows"
@@ -41,12 +40,12 @@
             android:shadowDx="-4"
             android:shadowDy="-4"
             android:shadowRadius="1"
-            android:text="Matrix Play"
-            android:textSize="40sp"
+            android:text="@string/app_name"
+            android:textSize="40dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_shadow_3"
+            android:id="@+id/loginTitleshadow_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/style_title_shadows"
@@ -54,12 +53,12 @@
             android:shadowDx="-4"
             android:shadowDy="-4"
             android:shadowRadius="1"
-            android:text="Matrix Play"
-            android:textSize="40sp"
+            android:text="@string/app_name"
+            android:textSize="40dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_shadow_4"
+            android:id="@+id/loginTitleshadow_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/style_title_shadows"
@@ -67,19 +66,18 @@
             android:shadowDx="-4"
             android:shadowDy="-4"
             android:shadowRadius="1"
-            android:text="Matrix Play"
-            android:textColor="#7A2DCB"
-            android:textSize="40sp"
+            android:text="@string/app_name"
+            android:textSize="40dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_foreground"
+            android:id="@+id/loginTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/style_title_foreground"
             android:fontFamily="@font/protonerdfontmonoregular"
-            android:text="Matrix Play"
-            android:textSize="40sp"
+            android:text="@string/app_name"
+            android:textSize="40dp"
             android:textStyle="bold" />
     </FrameLayout>
 
@@ -87,6 +85,10 @@
         android:id="@+id/cardView"
         android:layout_width="360dp"
         android:layout_height="229dp"
+        style="@style/style_cardview"
+        app:cardCornerRadius="12dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.16"
@@ -99,20 +101,38 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView2"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:gravity="center"
-                android:padding="6dp"
-                android:text="@string/login_title_Card"
-                android:textSize="24sp" />
+                android:layout_height="wrap_content">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp" />
+                <TextView
+                    android:id="@+id/loginCardViewTitleShadow"
+                    style="@style/style_cardview_title_shadows"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/protonerdfontmonoregular"
+                    android:gravity="center"
+                    android:layout_margin="12dp"
+                    android:padding="6dp"
+                    android:shadowDx="-4"
+                    android:shadowDy="-4"
+                    android:shadowRadius="1"
+                    android:text="@string/login_title_Card"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/loginCardViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/style_cardview_title"
+                    android:layout_margin="12dp"
+                    android:fontFamily="@font/protonerdfontmonoregular"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:text="@string/login_title_Card"
+                    android:textSize="24dp" />
+            </FrameLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -120,24 +140,30 @@
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginRight="18dp"
-                android:layout_marginBottom="2dp">
+                android:layout_marginBottom="2dp"
+                style="@style/style_cardview_input"
+                app:boxStrokeErrorColor="@color/red">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/loginUsername"
+                    style="@style/style_cardview_inputtextfield"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/login_username" />
+                    android:hint="@string/login_username"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/style_cardview_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginRight="18dp">
+                android:layout_marginRight="18dp"
+                app:boxStrokeErrorColor="@color/red">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/loginURL"
+                    style="@style/style_cardview_inputtextfield"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/login_url" />
