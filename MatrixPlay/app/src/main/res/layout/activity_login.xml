@@ -7,18 +7,81 @@
     android:id="@+id/login"
     >
 
-    <TextView
-        android:id="@+id/textView"
+
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="48sp"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.014" />
+        app:layout_constraintVertical_bias="0.044">
+
+        <TextView
+            android:id="@+id/text_shadow_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/style_title_shadows"
+            android:fontFamily="@font/protonerdfontmonoregular"
+            android:shadowDx="-4"
+            android:shadowDy="-4"
+            android:shadowRadius="1"
+            android:text="Matrix Play"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_shadow_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/style_title_shadows"
+            android:fontFamily="@font/protonerdfontmonoregular"
+            android:shadowDx="-4"
+            android:shadowDy="-4"
+            android:shadowRadius="1"
+            android:text="Matrix Play"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_shadow_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/style_title_shadows"
+            android:fontFamily="@font/protonerdfontmonoregular"
+            android:shadowDx="-4"
+            android:shadowDy="-4"
+            android:shadowRadius="1"
+            android:text="Matrix Play"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_shadow_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/style_title_shadows"
+            android:fontFamily="@font/protonerdfontmonoregular"
+            android:shadowDx="-4"
+            android:shadowDy="-4"
+            android:shadowRadius="1"
+            android:text="Matrix Play"
+            android:textColor="#7A2DCB"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_foreground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/style_title_foreground"
+            android:fontFamily="@font/protonerdfontmonoregular"
+            android:text="Matrix Play"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+    </FrameLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -28,8 +91,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.39">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.63">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -100,4 +163,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.895"
         app:strokeWidth="1dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

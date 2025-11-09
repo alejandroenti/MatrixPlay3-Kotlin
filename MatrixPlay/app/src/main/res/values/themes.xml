@@ -13,4 +13,13 @@
         <item name="android:textColor">@color/light_gray</item>
         <item name="strokeColor">@color/light_blue</item>
     </style>
+
+    <style name="style_title_shadows">
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:shadowColor">@color/light_black</item>
+    </style>
+    <style name="style_title_foreground">
+        <item name="android:textColor">@color/light_yellow</item>
+    </style>
+
 </resources>
