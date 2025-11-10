@@ -9,11 +9,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.matrixplay3.matrixplay.R
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.clients
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 class WaitActivity : BaseActivity() {
 
@@ -25,6 +29,7 @@ class WaitActivity : BaseActivity() {
     private lateinit var player2Image : ImageView
     private lateinit var player1Name : TextView
     private lateinit var player2Name : TextView
+    private lateinit var players : ArrayList<TextView>
 
     private var player2NambeJob: Job? = null
 
@@ -38,6 +43,8 @@ class WaitActivity : BaseActivity() {
             insets
         }
 
+        currentRefActivity = this
+
         title = findViewById<TextView>(R.id.waitTitle)
         titleShadow = findViewById<TextView>(R.id.waitTitleShadow)
         versus = findViewById<TextView>(R.id.waitVersusTitle)
@@ -46,6 +53,8 @@ class WaitActivity : BaseActivity() {
         player2Image = findViewById<ImageView>(R.id.waitImagePlayer2)
         player1Name = findViewById<TextView>(R.id.waitNamePlayer1)
         player2Name = findViewById<TextView>(R.id.waitNamePlayer2)
+
+        players = arrayListOf(player1Name, player2Name)
 
         startDotAnimation(title, getString(R.string.wait_title))
         startDotAnimation(titleShadow, getString(R.string.wait_title))
@@ -56,8 +65,20 @@ class WaitActivity : BaseActivity() {
         fillPlayers()
     }
 
-    private fun fillPlayers() {
-        TODO("Not yet implemented")
+    fun fillPlayers() {
+        var p : Int = 0
+        for (client in clients) {
+            if (p == 1) {
+                player2NambeJob?.cancel()
+                player2NambeJob = null
+            }
+            players.get(p).text = client.name
+            p += 1
+
+            if (p >= 2) {
+                break
+            }
+        }
     }
 
     fun startDotAnimation(tv : TextView, baseText : String) {

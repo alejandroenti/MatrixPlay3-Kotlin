@@ -12,16 +12,28 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.matrixplay3.matrixplay.R
+import com.matrixplay3.matrixplay.classes.ClientData
+import com.matrixplay3.matrixplay.classes.WSClient
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.connectWithWSS
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.currentActivityRef
+import com.matrixplay3.matrixplay.classes.WSManager.Companion.wsClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.net.URI
 
 class LoginActivity : BaseActivity() {
 
     companion object {
         lateinit var userName : String
+        var clients : ArrayList<ClientData> = ArrayList<ClientData>();
+        var currentRefActivity : BaseActivity? = null
+
+        public fun connectWS(uri : String) {
+            var uri : URI = URI(uri)
+            wsClient = WSClient(uri)
+            wsClient.connect()
+        }
     }
 
     private val USERNAME_MAX_LENGTH : Int = 8
@@ -41,6 +53,8 @@ class LoginActivity : BaseActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        currentRefActivity = this
 
         username = findViewById<TextInputEditText>(R.id.loginUsername)
         serverUrl = findViewById<TextInputEditText>(R.id.loginURL)
@@ -93,16 +107,12 @@ class LoginActivity : BaseActivity() {
             return
         }
 
-        CoroutineScope(Dispatchers.Main).launch {
-            val connected = connectWithWSS(serverStr, CONNECTION_TIMEOUT)
-            if (!connected) {
-                showAlertDialog(R.string.login_alert_dialog_connection_timeout)
-            } else {
-                // Pass to Wait Activity
-                val intent = Intent( this@LoginActivity, WaitActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
+        connectWS(serverStr)
+    }
+
+    public fun passToWait() {
+        val intent = Intent(this, WaitActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
