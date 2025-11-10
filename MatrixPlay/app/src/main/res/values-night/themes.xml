@@ -44,4 +44,11 @@
     <style name="style_wait_versus">
         <item name="android:textColor">@color/dark_blue</item>
     </style>
+
+    <style name="style_wait_player1">
+        <item name="android:textColor">@color/red</item>
+    </style>
+    <style name="style_wait_player2">
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
 </resources>

@@ -52,6 +52,12 @@ class WaitActivity : BaseActivity() {
         startRespirationAnimation(versus)
         startRespirationAnimation(versusShadow)
         startDotAnimation(player2Name, "")
+
+        fillPlayers()
+    }
+
+    private fun fillPlayers() {
+        TODO("Not yet implemented")
     }
 
     fun startDotAnimation(tv : TextView, baseText : String) {
