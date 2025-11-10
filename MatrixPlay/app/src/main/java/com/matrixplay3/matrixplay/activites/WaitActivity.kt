@@ -47,15 +47,14 @@ class WaitActivity : BaseActivity() {
         player1Name = findViewById<TextView>(R.id.waitNamePlayer1)
         player2Name = findViewById<TextView>(R.id.waitNamePlayer2)
 
-        startDotAnimation(title)
-        startDotAnimation(titleShadow)
+        startDotAnimation(title, getString(R.string.wait_title))
+        startDotAnimation(titleShadow, getString(R.string.wait_title))
         startRespirationAnimation(versus)
         startRespirationAnimation(versusShadow)
-        startDotAnimation(player2Name)
+        startDotAnimation(player2Name, "")
     }
 
-    fun startDotAnimation(tv : TextView) {
-        val baseText = getString(R.string.wait_title)
+    fun startDotAnimation(tv : TextView, baseText : String) {
         val maxDots = 3
         val delayMillis : Long = 750
 
