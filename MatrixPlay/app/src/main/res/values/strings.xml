@@ -10,4 +10,5 @@
     <string name="login_alert_dialog_connection_timeout">Connection Timeout! Try again later</string>
     <string name="wait_title">Waiting for players</string>
     <string name="wait_versus_text">VS</string>
+    <string name="countdown_title">Game starts in</string>
 </resources>
