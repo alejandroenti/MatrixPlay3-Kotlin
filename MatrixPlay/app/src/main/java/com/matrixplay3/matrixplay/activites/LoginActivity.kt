@@ -19,6 +19,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginActivity : BaseActivity() {
+
+    companion object {
+        lateinit var userName : String
+    }
+
     private val USERNAME_MAX_LENGTH : Int = 8
     private val CONNECTION_TIMEOUT : Long = 10_000
 
@@ -55,6 +60,7 @@ class LoginActivity : BaseActivity() {
                 // Check Username length
                 if (username.text!!.length <= USERNAME_MAX_LENGTH) {
                     // Connect To Server
+                    userName = username.text!!.toString()
                     attemptConnection()
                 }
                 else {
