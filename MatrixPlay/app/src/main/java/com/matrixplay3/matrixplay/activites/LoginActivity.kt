@@ -3,21 +3,22 @@ package com.matrixplay3.matrixplay.activites
 import android.app.AlertDialog
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputEditText
 import com.matrixplay3.matrixplay.R
+import com.matrixplay3.matrixplay.classes.WSManager.Companion.connectWithWSS
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginActivity : BaseActivity() {
-
     private val USERNAME_MAX_LENGTH : Int = 8
+    private val CONNECTION_TIMEOUT : Long = 10_000
 
     private lateinit var username : TextInputEditText
     private lateinit var serverUrl : TextInputEditText
@@ -52,6 +53,7 @@ class LoginActivity : BaseActivity() {
                 // Check Username length
                 if (username.text!!.length <= USERNAME_MAX_LENGTH) {
                     // Connect To Server
+                    attemptConnection()
                 }
                 else {
                     showAlertDialog(R.string.login_alert_dialog_message_username)
@@ -72,5 +74,25 @@ class LoginActivity : BaseActivity() {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun attemptConnection() {
+        val usernameStr = username.text.toString()
+        val serverStr = serverUrl.text.toString()
+
+        if (usernameStr.length > USERNAME_MAX_LENGTH) {
+            showAlertDialog(R.string.login_alert_dialog_message_username)
+            return
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val connected = connectWithWSS(serverStr, CONNECTION_TIMEOUT)
+            if (!connected) {
+                showAlertDialog(R.string.login_alert_dialog_connection_timeout)
+            } else {
+                // Pass to Wait Activity
+                Log.d("WS", "Passing to Wait Activity")
+            }
+        }
     }
 }

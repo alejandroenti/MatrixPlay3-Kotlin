@@ -5,7 +5,7 @@ import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
 import java.net.URI
 
-class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
+open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
 
     override fun onOpen(handshakedata: ServerHandshake?) {
         Log.d("WSConnection", "[*] Opened Connection!")
