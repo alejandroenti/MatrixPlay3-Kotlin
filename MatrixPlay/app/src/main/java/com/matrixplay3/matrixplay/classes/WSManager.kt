@@ -1,5 +1,6 @@
 package com.matrixplay3.matrixplay.classes
 
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.java_websocket.handshake.ServerHandshake
 import java.net.URI
@@ -8,6 +9,7 @@ import kotlin.coroutines.resume
 class WSManager {
     companion object {
         lateinit var wsClient: WSClient
+        public var currentActivityRef: AppCompatActivity? = null
 
         suspend fun connectWithWSS(uri: String, timeoutMillis: Long = 10_000): Boolean {
             return suspendCancellableCoroutine { cont ->

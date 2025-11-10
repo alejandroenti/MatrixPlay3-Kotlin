@@ -1,6 +1,7 @@
 package com.matrixplay3.matrixplay.activites
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.matrixplay3.matrixplay.R
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.connectWithWSS
+import com.matrixplay3.matrixplay.classes.WSManager.Companion.currentActivityRef
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -91,7 +93,9 @@ class LoginActivity : BaseActivity() {
                 showAlertDialog(R.string.login_alert_dialog_connection_timeout)
             } else {
                 // Pass to Wait Activity
-                Log.d("WS", "Passing to Wait Activity")
+                val intent = Intent( this@LoginActivity, WaitActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }

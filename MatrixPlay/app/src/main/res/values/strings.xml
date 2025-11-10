@@ -8,4 +8,6 @@
     <string name="login_alert_dialog_message_blank">Fields can not be blank!</string>
     <string name="login_alert_dialog_message_username">Username must contain 8 characters as maximum</string>
     <string name="login_alert_dialog_connection_timeout">Connection Timeout! Try again later</string>
+    <string name="wait_title">Waiting for players</string>
+    <string name="wait_versus_text">VS</string>
 </resources>
