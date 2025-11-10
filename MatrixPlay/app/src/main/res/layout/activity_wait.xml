@@ -116,7 +116,7 @@
 
         <TextView
             android:id="@+id/waitVersusTitle"
-            style="@style/style_title_foreground"
+            style="@style/style_wait_versus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
