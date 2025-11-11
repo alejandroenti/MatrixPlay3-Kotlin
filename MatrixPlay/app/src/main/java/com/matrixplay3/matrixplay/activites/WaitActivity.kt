@@ -109,8 +109,10 @@ class WaitActivity : BaseActivity() {
     }
 
     fun passToCountdown() {
-        val intent = Intent(this, CountdownActivity::class.java)
-        startActivity(intent)
-        finish()
+        runOnUiThread {
+            val intent = Intent(this, CountdownActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
