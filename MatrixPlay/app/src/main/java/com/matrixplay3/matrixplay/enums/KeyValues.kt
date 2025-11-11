@@ -3,6 +3,7 @@ package com.matrixplay3.matrixplay.enums
 enum class KeyValues (val value : String) {
     K_TYPE("type"),
     K_MESSAGE("message"),
+    K_VALUE("value"),
 
     // Server Calls
     K_SALUTION("salutation"),
