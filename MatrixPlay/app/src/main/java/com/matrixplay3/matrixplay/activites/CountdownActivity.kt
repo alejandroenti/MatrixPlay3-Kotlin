@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.matrixplay3.matrixplay.R
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
 
 class CountdownActivity : BaseActivity() {
 
@@ -24,14 +25,16 @@ class CountdownActivity : BaseActivity() {
             insets
         }
 
+        currentRefActivity = this
+
         number = findViewById<TextView>(R.id.countdownNumber)
         numberShadow = findViewById<TextView>(R.id.countdownNumberShadow)
     }
 
-    public fun updateNumber(num : Int) {
+    public fun updateNumber(num : String) {
         runOnUiThread {
-            number.text = num.toString()
-            numberShadow.text = num.toString()
+            number.text = num
+            numberShadow.text = num
 
             startMinMaxAnimation(number)
             startMinMaxAnimation(numberShadow)

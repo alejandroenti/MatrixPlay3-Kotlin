@@ -1,6 +1,7 @@
 package com.matrixplay3.matrixplay.classes
 
 import android.util.Log
+import com.matrixplay3.matrixplay.activites.CountdownActivity
 import com.matrixplay3.matrixplay.activites.LoginActivity
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.clients
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
@@ -74,7 +75,17 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
             }
 
             KeyValues.K_COUNTDOWN.value -> {
+                if (currentRefActivity is WaitActivity) {
+                    (currentRefActivity as WaitActivity).passToCountdown()
+                }
 
+                val value = json.getString(KeyValues.K_VALUE.value)
+                if (value.equals("0")) {
+                    Log.d("Server Communication", "Recevied 0 - Passing to Play")
+                    //(currentRefActivity as WaitActivity).passToPlay()
+                    return
+                }
+                (currentRefActivity as CountdownActivity).updateNumber(value)
             }
         }
 

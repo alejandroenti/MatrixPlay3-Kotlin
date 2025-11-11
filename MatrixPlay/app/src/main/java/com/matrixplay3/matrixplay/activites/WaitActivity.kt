@@ -2,6 +2,7 @@ package com.matrixplay3.matrixplay.activites
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -123,5 +124,11 @@ class WaitActivity : BaseActivity() {
 
         scaleX.start()
         scaleY.start()
+    }
+
+    fun passToCountdown() {
+        val intent = Intent(this, CountdownActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
