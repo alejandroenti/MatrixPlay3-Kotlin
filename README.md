@@ -24,6 +24,11 @@ git clone https://github.com/alejandroenti/MatrixPlay3-Kotlin.git
 4. Build the solution.
 5. Execute on your emulator.
 
+## Related projects
+- [WebSockets Server](https://github.com/Alvarjur/MatrixPlay3-Server)
+- [JavaFX Desktop client](https://github.com/Yessc/MatrixPlay3-APPDesktop)
+- [Java Raspberry Pi Client](https://github.com/alejandroenti/MatrixPlay3-Raspberri)
+
 ## Developers
 | [<img src="https://github.com/Yessc.png" width="80">](https://github.com/Yessc) | [<img src="https://github.com/Alvarjur.png" width="80">](https://github.com/Alvarjur) | [<img src="https://github.com/alejandroenti.png" width="80">](https://github.com/alejandroenti) |
 |:--:|:--:|:--:|
