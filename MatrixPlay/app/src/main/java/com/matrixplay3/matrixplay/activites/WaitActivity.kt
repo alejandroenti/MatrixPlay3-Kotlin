@@ -32,8 +32,6 @@ class WaitActivity : BaseActivity() {
     private lateinit var player2Name : TextView
     private lateinit var players : ArrayList<TextView>
 
-    private var player2NambeJob: Job? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -61,23 +59,20 @@ class WaitActivity : BaseActivity() {
         startDotAnimation(titleShadow, getString(R.string.wait_title))
         startRespirationAnimation(versus)
         startRespirationAnimation(versusShadow)
-        startDotAnimation(player2Name, "")
 
         fillPlayers()
     }
 
     fun fillPlayers() {
-        var p : Int = 0
-        for (client in clients) {
-            if (p == 1) {
-                player2NambeJob?.cancel()
-                player2NambeJob = null
-            }
-            players.get(p).text = client.name
-            p += 1
+        runOnUiThread {
+            var p : Int = 0
+            for (client in clients) {
+                players.get(p).text = client.name
+                p += 1
 
-            if (p >= 2) {
-                break
+                if (p >= 2) {
+                    break
+                }
             }
         }
     }
@@ -85,19 +80,6 @@ class WaitActivity : BaseActivity() {
     fun startDotAnimation(tv : TextView, baseText : String) {
         val maxDots = 3
         val delayMillis : Long = 750
-
-        if (tv.id.equals(R.id.waitNamePlayer2)) {
-            player2NambeJob = CoroutineScope(Dispatchers.Main).launch {
-                var dotCount = 0
-                while (true) {
-                    val dots = ".".repeat(dotCount)
-                    tv.text = baseText + dots
-                    dotCount++
-                    if (dotCount > maxDots) dotCount = 0 // reinicia los puntos
-                    delay(delayMillis)
-                }
-            }
-        }
 
         CoroutineScope(Dispatchers.Main).launch {
             var dotCount = 0
