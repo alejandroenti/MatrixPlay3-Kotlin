@@ -29,8 +29,9 @@ class ClientData {
     // Converteix l'objecte a JSON
     fun toJSON(): JSONObject {
         val obj = JSONObject()
-        obj.put("name", name)
-        obj.put("posY", posY)
+        obj.put(KeyValues.K_NAME.value, name)
+        obj.put(KeyValues.K_CLIENT_TYPE.value, clientType)
+        obj.put(KeyValues.K_POSY.value, posY)
         return obj
     }
 
