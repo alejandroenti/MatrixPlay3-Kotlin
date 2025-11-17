@@ -69,7 +69,7 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                     clients.add(cd)
                 }
 
-                Log.d("Server COmmunication", clients.toString())
+                Log.d("Server Communication", clients.toString())
 
                 if (currentRefActivity is WaitActivity) {
                     (currentRefActivity as WaitActivity).fillPlayers()
@@ -84,7 +84,7 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                 val value = json.getString(KeyValues.K_VALUE.value)
                 if (value.equals("0")) {
                     Log.d("Server Communication", "Recevied 0 - Passing to Play")
-                    //(currentRefActivity as WaitActivity).passToPlay()
+                    (currentRefActivity as CountdownActivity).passToGameView()
                     return
                 }
                 (currentRefActivity as CountdownActivity).updateNumber(value)
