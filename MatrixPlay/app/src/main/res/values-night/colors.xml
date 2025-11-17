@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme -->
+    <color name="black">#383739</color>
+    <color name="purple">#403657</color>
+    <color name="blue">#3076CA</color>
+    <color name="green">#41805E</color>
+    <color name="yellow">#FAF86C</color>
+    <color name="gray">#C4C6D2</color>
+
+
+    <!-- Canvas -->
+    <color name="background_color">@color/black</color>
+    <color name="background_stroke_color">@color/yellow</color>
+    <color name="p1_color">@color/red</color>
+    <color name="p2_color">@color/gray</color>
+</resources>
