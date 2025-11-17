@@ -107,8 +107,8 @@ class CustomCanvas @JvmOverloads constructor(
     }
 
     fun setPadDimensions(w : Float, h : Float) {
-        padWidth = w
-        padHeight = h
+        padWidth = w * width
+        padHeight = h * height
     }
 
     fun updateScore(pos : Int) {
@@ -160,37 +160,21 @@ class CustomCanvas @JvmOverloads constructor(
         var x : Float = width * positionsX.get(0)
         var y : Float = height * positionsY.get(1)
 
-        /*canvas.drawRect(
+        canvas.drawRect(
             x,
             y,
-            x + padWidth,
-            y + padHeight,
-            padPlayer1Paint
-        )*/
-
-        canvas.drawRect(
-            0.1f,
-            0.4f,
-            0.1f + padWidth,
-            0.2f + padHeight,
+            x + (padWidth * width),
+            y + (padHeight * height),
             padPlayer1Paint
         )
 
-        Log.d("Drawing Pads", "Drawing")
         x = width * positionsX.get(1)
         y = height * positionsY.get(1)
-        /*canvas.drawRect(
+        canvas.drawRect(
             x,
             y,
-            x + padWidth,
-            y + padHeight,
-            padPlayer2Paint
-        )*/
-        canvas.drawRect(
-            0.6f,
-            0.4f,
-            0.9f,
-            0.8f,
+            x + (padWidth * width),
+            y + (padHeight * height),
             padPlayer2Paint
         )
     }
