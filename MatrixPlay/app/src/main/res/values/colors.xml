@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Common Colors -->
-    <color name="black">#FF000000</color>
-    <color name="white">#F1F1F1</color>
+    <color name="black_original">#FF000000</color>
+    <color name="white_original">#F1F1F1</color>
     <color name="red">#C62532</color>
 
-    <!-- Dark Theme -->
-    <color name="dark_black">#383739</color>
-    <color name="dark_purple">#403657</color>
-    <color name="dark_blue">#3076CA</color>
-    <color name="dark_green">#41805E</color>
-    <color name="dark_yellow">#FAF86C</color>
-    <color name="dark_gray">#C4C6D2</color>
-
     <!-- Light Theme -->
-    <color name="light_black">#68756D</color>
-    <color name="light_purple">#8F76A6</color>
-    <color name="light_blue">#AE64F5</color>
-    <color name="light_green">#64F597</color>
-    <color name="light_yellow">#F5BC64</color>
-    <color name="light_gray">#EFE8FA</color>
+    <color name="black">#68756D</color>
+    <color name="purple">#8F76A6</color>
+    <color name="blue">#AE64F5</color>
+    <color name="green">#64F597</color>
+    <color name="yellow">#F5BC64</color>
+    <color name="gray">#EFE8FA</color>
+
+    <!-- Canvas -->
+    <color name="background_color">@color/gray</color>
+    <color name="background_stroke_color">@color/black</color>
+    <color name="p1_color">@color/red</color>
+    <color name="p2_color">@color/purple</color>
 </resources>

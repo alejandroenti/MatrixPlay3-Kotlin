@@ -14,5 +14,6 @@ enum class KeyValues (val value : String) {
     K_REGISTER("register"),
     K_NAME("clientName"),
     K_CLIENT_TYPE("clientType"),
-    K_POSY("posY")
+    K_POSY("posY"),
+    K_CLIENT_DATA("clientData")
 }

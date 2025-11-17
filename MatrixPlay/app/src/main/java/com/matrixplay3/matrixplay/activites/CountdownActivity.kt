@@ -2,6 +2,7 @@ package com.matrixplay3.matrixplay.activites
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -31,7 +32,7 @@ class CountdownActivity : BaseActivity() {
         numberShadow = findViewById<TextView>(R.id.countdownNumberShadow)
     }
 
-    public fun updateNumber(num : String) {
+    fun updateNumber(num : String) {
         runOnUiThread {
             number.text = num
             numberShadow.text = num
@@ -39,6 +40,12 @@ class CountdownActivity : BaseActivity() {
             startMinMaxAnimation(number)
             startMinMaxAnimation(numberShadow)
         }
+    }
+
+    fun passToGameView() {
+        val intent = Intent(this, GameActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun startMinMaxAnimation(tv : TextView) {
