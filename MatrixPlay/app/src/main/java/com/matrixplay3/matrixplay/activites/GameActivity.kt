@@ -31,10 +31,9 @@ class GameActivity : BaseActivity() {
     private lateinit var rivalPad : SeekBar
     private lateinit var canvas : CustomCanvas
 
-    var p1Pos = "0.23 0.45"
-    var p2Pos = "0.89 0.23"
-
     private var playerPadProgress : Float = 0.5f
+    private var playerPadProgressInter : Float = playerPadProgress
+    private var responseReceived : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,21 +58,7 @@ class GameActivity : BaseActivity() {
 
         playerPad.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val newProgress : Float = progress.toFloat() / SEEKBAR_MULTIPLIER
-                seekBar?.progress = (playerPadProgress * SEEKBAR_MULTIPLIER).toInt()
-                var direction : String = "up"
-
-                if (playerPadProgress > newProgress) {
-                    direction = "down"
-                }
-
-                var msg : JSONObject = JSONObject()
-                msg.put(KeyValues.K_TYPE.value, KeyValues.K_CLIENT_DATA.value)
-                msg.put(KeyValues.K_NAME.value, userName)
-                msg.put(KeyValues.K_DIRECTION.value, direction)
-
-                //wsClient.send(msg.toString())
-                Log.d("SeekBar", msg.toString())
+                playerPadProgressInter = progress.toFloat() / SEEKBAR_MULTIPLIER
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -81,7 +66,20 @@ class GameActivity : BaseActivity() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // Necessary
+                var direction : String = "up"
+
+                if (playerPadProgress > playerPadProgressInter) {
+                    direction = "down"
+                }
+
+                playerPadProgress = playerPadProgressInter
+
+                var msg : JSONObject = JSONObject()
+                msg.put(KeyValues.K_TYPE.value, KeyValues.K_MOVEMENT.value)
+                msg.put(KeyValues.K_NAME.value, userName)
+                msg.put(KeyValues.K_MESSAGE.value, direction)
+
+                wsClient.send(msg.toString())
             }
         })
     }
@@ -92,15 +90,9 @@ class GameActivity : BaseActivity() {
             var x = coords[0].toFloat()
             var y = coords[1].toFloat()
 
-            playerPadProgress = y
-            playerPad.progress = (y * SEEKBAR_MULTIPLIER).toInt()
+            //player1Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
+            canvas.updatePlayer1PadPosition(x, y)
 
-            if (playerPad.equals(player1Pad)) {
-                canvas.updatePlayer1PadPosition(x, y)
-            }
-            else {
-                canvas.updatePlayer2PadPosition(x, y)
-            }
         }
     }
 
@@ -110,23 +102,13 @@ class GameActivity : BaseActivity() {
             var x = coords[0].toFloat()
             var y = coords[1].toFloat()
 
-            rivalPad.progress = (y * SEEKBAR_MULTIPLIER).toInt()
+            //player2Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
+            canvas.updatePlayer2PadPosition(x, y)
 
-            if (playerPad.equals(player1Pad)) {
-                canvas.updatePlayer2PadPosition(x, y)
-            } else {
-                canvas.updatePlayer1PadPosition(x, y)
-            }
         }
     }
 
     private fun disablePad() {
-        playerPad = player1Pad
-        rivalPad = player2Pad
-        player2Pad.isClickable = false
-        player2Pad.isEnabled = false
-        player2Pad.isFocusable = false
-        /*
         if (clients.get(0).name.equals(userName)) {
             playerPad = player1Pad
             rivalPad = player2Pad
@@ -140,6 +122,6 @@ class GameActivity : BaseActivity() {
             player1Pad.isClickable = false
             player1Pad.isEnabled = false
             player1Pad.isFocusable = false
-        }*/
+        }
     }
 }

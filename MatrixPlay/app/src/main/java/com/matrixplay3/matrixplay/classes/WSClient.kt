@@ -58,22 +58,24 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
             }
 
             KeyValues.K_CLIENTS_LIST.value -> {
-                if (currentRefActivity is WaitActivity){
-                    Log.d("Server Communication", "Receiving new clientList")
 
-                    val arr: JSONArray = json.getJSONArray(KeyValues.K_CLIENTS_LIST.value)
-                    clients.clear()
+                Log.d("Server Communication", "Receiving new clientList")
 
-                    for (i in 0..<arr.length()) {
-                        val `object` = arr.getJSONObject(i)
-                        val name = `object`.getString(KeyValues.K_NAME.value)
-                        val clientType = `object`.getString(KeyValues.K_CLIENT_TYPE.value)
+                val arr: JSONArray = json.getJSONArray(KeyValues.K_CLIENTS_LIST.value)
+                clients.clear()
 
-                        val cd: ClientData = ClientData(name, clientType)
-                        clients.add(cd)
-                    }
+                for (i in 0..<arr.length()) {
+                    val `object` = arr.getJSONObject(i)
+                    val name = `object`.getString(KeyValues.K_NAME.value)
+                    val clientType = `object`.getString(KeyValues.K_CLIENT_TYPE.value)
 
-                    Log.d("Server Communication", clients.toString())
+                    val cd: ClientData = ClientData(name, clientType)
+                    clients.add(cd)
+                }
+
+                Log.d("Server Communication", clients.toString())
+
+                if (currentRefActivity is WaitActivity) {
                     (currentRefActivity as WaitActivity).fillPlayers()
                 }
             }
@@ -93,12 +95,23 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
             }
 
             KeyValues.K_PLAYER_POSITION.value -> {
+                var playerName = json.getString(KeyValues.K_PLAYER_NAME.value)
+                var position = json.getString(KeyValues.K_POSITION.value)
 
+                Log.d("WS Position Changed", json.toString())
+
+                if (playerName.equals(clients.get(0).name)) {
+                    (currentRefActivity as GameActivity).setPlayer1Pos(position)
+                }
+                else {
+                    (currentRefActivity as GameActivity).setPlayer2Pos(position)
+                }
             }
 
             KeyValues.K_INITIAL_POSITION.value -> {
                 p1Pos = json.getString(KeyValues.K_PLAYER_1.value)
                 p2Pos = json.getString(KeyValues.K_PLAYER_2.value)
+                Log.d("WS Init Positions", json.toString())
             }
         }
 

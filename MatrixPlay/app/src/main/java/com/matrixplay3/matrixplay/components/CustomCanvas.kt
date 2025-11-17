@@ -22,7 +22,7 @@ class CustomCanvas @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private val STROKE_CANVAS_WIDTH : Int = 2
-    private var padWidth : Float = 0.1f
+    private var padWidth : Float = 0.01f
     private var padHeight : Float = 0.2f
     private val font = ResourcesCompat.getFont(context, R.font.protonerdfontmonoregular)
 
@@ -99,11 +99,13 @@ class CustomCanvas @JvmOverloads constructor(
     fun updatePlayer1PadPosition(x : Float, y : Float) {
         positionsX.set(0, x)
         positionsY.set(0, y)
+        invalidate()
     }
 
     fun updatePlayer2PadPosition(x : Float, y : Float) {
         positionsX.set(1, x)
         positionsY.set(1, y)
+        invalidate()
     }
 
     fun setPadDimensions(w : Float, h : Float) {
@@ -137,19 +139,17 @@ class CustomCanvas @JvmOverloads constructor(
     private fun drawPlayer1Score(canvas : Canvas) {
         var x : Float = width * 0.15f
         var y : Float = height * 0.1f
-        //canvas.drawText(clients.get(0).name, x, y, namePlayer1Paint)
-        canvas.drawText("Alex", x, y, namePlayer1Paint)
+        canvas.drawText(clients.get(0).name, x, y, namePlayer1Paint)
 
         x = width * 0.3f
         y = height * 0.9f
-        //canvas.drawText(scores.get(0).toString(), x, y, scorePlayer1Paint)
         canvas.drawText(scores.get(0).toString(), x, y, scorePlayer1Paint)
     }
 
     private fun drawPlayer2Score(canvas : Canvas) {
         var x : Float = width * 0.55f
         var y : Float = height * 0.1f
-        canvas.drawText("Erick", x, y, namePlayer2Paint)
+        canvas.drawText(clients.get(1).name, x, y, namePlayer2Paint)
 
         x = width * 0.55f
         y = height * 0.9f
@@ -158,7 +158,7 @@ class CustomCanvas @JvmOverloads constructor(
 
     private fun drawPads(canvas : Canvas) {
         var x : Float = width * positionsX.get(0)
-        var y : Float = height * positionsY.get(1)
+        var y : Float = height * positionsY.get(0)
 
         canvas.drawRect(
             x,
