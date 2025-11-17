@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MatrixPlay">
         <activity
-            android:name=".activites.GameActivity"
+            android:name=".activites.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".activites.WaitActivity"/>
         <activity android:name=".activites.CountdownActivity"/>
+        <activity android:name=".activites.GameActivity"/>
     </application>
 
 </manifest>
