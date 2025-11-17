@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".activites.WaitActivity"/>
         <activity android:name=".activites.CountdownActivity"/>
+        <activity android:name=".activites.GameActivity"/>
     </application>
 
 </manifest>
