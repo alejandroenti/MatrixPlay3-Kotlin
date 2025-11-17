@@ -2,9 +2,12 @@ package com.matrixplay3.matrixplay.classes
 
 import android.util.Log
 import com.matrixplay3.matrixplay.activites.CountdownActivity
+import com.matrixplay3.matrixplay.activites.GameActivity
 import com.matrixplay3.matrixplay.activites.LoginActivity
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.clients
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p1Pos
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p2Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
 import com.matrixplay3.matrixplay.activites.WaitActivity
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.wsClient
@@ -55,23 +58,22 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
             }
 
             KeyValues.K_CLIENTS_LIST.value -> {
-                Log.d("Server Communication", "Receiving new clientList")
+                if (currentRefActivity is WaitActivity){
+                    Log.d("Server Communication", "Receiving new clientList")
 
-                val arr: JSONArray = json.getJSONArray(KeyValues.K_CLIENTS_LIST.value)
-                clients.clear()
+                    val arr: JSONArray = json.getJSONArray(KeyValues.K_CLIENTS_LIST.value)
+                    clients.clear()
 
-                for (i in 0..<arr.length()) {
-                    val `object` = arr.getJSONObject(i)
-                    val name = `object`.getString(KeyValues.K_NAME.value)
-                    val clientType = `object`.getString(KeyValues.K_CLIENT_TYPE.value)
+                    for (i in 0..<arr.length()) {
+                        val `object` = arr.getJSONObject(i)
+                        val name = `object`.getString(KeyValues.K_NAME.value)
+                        val clientType = `object`.getString(KeyValues.K_CLIENT_TYPE.value)
 
-                    val cd: ClientData = ClientData(name, clientType)
-                    clients.add(cd)
-                }
+                        val cd: ClientData = ClientData(name, clientType)
+                        clients.add(cd)
+                    }
 
-                Log.d("Server Communication", clients.toString())
-
-                if (currentRefActivity is WaitActivity) {
+                    Log.d("Server Communication", clients.toString())
                     (currentRefActivity as WaitActivity).fillPlayers()
                 }
             }
@@ -88,6 +90,15 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                     return
                 }
                 (currentRefActivity as CountdownActivity).updateNumber(value)
+            }
+
+            KeyValues.K_PLAYER_POSITION.value -> {
+
+            }
+
+            KeyValues.K_INITIAL_POSITION.value -> {
+                p1Pos = json.getString(KeyValues.K_PLAYER_1.value)
+                p2Pos = json.getString(KeyValues.K_PLAYER_2.value)
             }
         }
 

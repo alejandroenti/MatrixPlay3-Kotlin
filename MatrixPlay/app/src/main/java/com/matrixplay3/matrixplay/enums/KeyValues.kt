@@ -15,5 +15,10 @@ enum class KeyValues (val value : String) {
     K_NAME("clientName"),
     K_CLIENT_TYPE("clientType"),
     K_POSY("posY"),
-    K_CLIENT_DATA("clientData")
+    K_CLIENT_DATA("clientData"),
+    K_DIRECTION("direction"),
+    K_PLAYER_POSITION("playerPosition"),
+    K_INITIAL_POSITION("initialPosition"),
+    K_PLAYER_1("p1"),
+    K_PLAYER_2("p2")
 }

@@ -29,6 +29,9 @@ class LoginActivity : BaseActivity() {
         var clients : ArrayList<ClientData> = ArrayList<ClientData>();
         var currentRefActivity : BaseActivity? = null
 
+        lateinit var p1Pos : String
+        lateinit var p2Pos : String
+
         public fun connectWS(uri : String) {
             var uri : URI = URI(uri)
             wsClient = WSClient(uri)

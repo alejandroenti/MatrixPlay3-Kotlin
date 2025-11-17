@@ -11,6 +11,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.matrixplay3.matrixplay.R
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.clients
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p1Pos
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p2Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.wsClient
 import com.matrixplay3.matrixplay.components.CustomCanvas
@@ -28,6 +31,9 @@ class GameActivity : BaseActivity() {
     private lateinit var rivalPad : SeekBar
     private lateinit var canvas : CustomCanvas
 
+    var p1Pos = "0.23 0.45"
+    var p2Pos = "0.89 0.23"
+
     private var playerPadProgress : Float = 0.5f
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,22 +46,34 @@ class GameActivity : BaseActivity() {
             insets
         }
 
+        currentRefActivity = this
+
         player1Pad = findViewById<SeekBar>(R.id.gamePlayer1ControlPad)
         player2Pad = findViewById<SeekBar>(R.id.gamePlayer2ControlPad)
         canvas = findViewById<CustomCanvas>(R.id.gameCanvas)
 
         disablePad()
 
+        setPlayer1Pos(p1Pos)
+        setPlayer2Pos(p2Pos)
+
         playerPad.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val newProgress : Float = progress.toFloat() / SEEKBAR_MULTIPLIER
                 seekBar?.progress = (playerPadProgress * SEEKBAR_MULTIPLIER).toInt()
+                var direction : String = "up"
+
+                if (playerPadProgress > newProgress) {
+                    direction = "down"
+                }
+
                 var msg : JSONObject = JSONObject()
                 msg.put(KeyValues.K_TYPE.value, KeyValues.K_CLIENT_DATA.value)
-                msg.put(KeyValues.K_POSY.value, newProgress.toString())
+                msg.put(KeyValues.K_NAME.value, userName)
+                msg.put(KeyValues.K_DIRECTION.value, direction)
 
-                wsClient.send(msg.toString())
-                //Log.d("SeekBar", msg.toString())
+                //wsClient.send(msg.toString())
+                Log.d("SeekBar", msg.toString())
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -68,13 +86,38 @@ class GameActivity : BaseActivity() {
         })
     }
 
-    fun updatePlayerPad(progress : Float) {
-        playerPadProgress = progress
-        playerPad.progress = (progress * SEEKBAR_MULTIPLIER).toInt()
+    fun setPlayer1Pos(position : String) {
+        runOnUiThread {
+            var coords = position.split(" ")
+            var x = coords[0].toFloat()
+            var y = coords[1].toFloat()
+
+            playerPadProgress = y
+            playerPad.progress = (y * SEEKBAR_MULTIPLIER).toInt()
+
+            if (playerPad.equals(player1Pad)) {
+                canvas.updatePlayer1PadPosition(x, y)
+            }
+            else {
+                canvas.updatePlayer2PadPosition(x, y)
+            }
+        }
     }
 
-    fun updateRivalPad(progress : Float) {
-        rivalPad.progress = (progress * SEEKBAR_MULTIPLIER).toInt()
+    fun setPlayer2Pos(position : String) {
+        runOnUiThread {
+            var coords = position.split(" ")
+            var x = coords[0].toFloat()
+            var y = coords[1].toFloat()
+
+            rivalPad.progress = (y * SEEKBAR_MULTIPLIER).toInt()
+
+            if (playerPad.equals(player1Pad)) {
+                canvas.updatePlayer2PadPosition(x, y)
+            } else {
+                canvas.updatePlayer1PadPosition(x, y)
+            }
+        }
     }
 
     private fun disablePad() {
@@ -86,14 +129,14 @@ class GameActivity : BaseActivity() {
         /*
         if (clients.get(0).name.equals(userName)) {
             playerPad = player1Pad
-             rivalPad = player2Pad
+            rivalPad = player2Pad
             player2Pad.isClickable = false
             player2Pad.isEnabled = false
             player2Pad.isFocusable = false
         }
         else {
             playerPad = player2Pad
-             rivalPad = player1Pad
+            rivalPad = player1Pad
             player1Pad.isClickable = false
             player1Pad.isEnabled = false
             player1Pad.isFocusable = false
