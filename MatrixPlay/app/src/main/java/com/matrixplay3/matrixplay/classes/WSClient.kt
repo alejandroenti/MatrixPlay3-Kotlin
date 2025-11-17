@@ -69,7 +69,7 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                     clients.add(cd)
                 }
 
-                Log.d("Server COmmunication", clients.toString())
+                Log.d("Server Communication", clients.toString())
 
                 if (currentRefActivity is WaitActivity) {
                     (currentRefActivity as WaitActivity).fillPlayers()
