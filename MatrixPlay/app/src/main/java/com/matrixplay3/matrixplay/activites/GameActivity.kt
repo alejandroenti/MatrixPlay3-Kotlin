@@ -50,7 +50,7 @@ class GameActivity : BaseActivity() {
             insets
         }
 
-        //currentRefActivity = this
+        currentRefActivity = this
 
         player1Pad = findViewById<SeekBar>(R.id.gamePlayer1ControlPad)
         player2Pad = findViewById<SeekBar>(R.id.gamePlayer2ControlPad)
