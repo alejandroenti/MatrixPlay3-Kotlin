@@ -59,6 +59,15 @@ class GameActivity : BaseActivity() {
         playerPad.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 playerPadProgressInter = progress.toFloat() / SEEKBAR_MULTIPLIER
+                var amount = playerPadProgressInter - playerPadProgress
+                playerPadProgress = playerPadProgressInter
+
+                var msg : JSONObject = JSONObject()
+                msg.put(KeyValues.K_TYPE.value, KeyValues.K_MOVEMENT.value)
+                msg.put(KeyValues.K_NAME.value, userName)
+                msg.put(KeyValues.K_MESSAGE.value, (amount * 10).toString())
+
+                wsClient.send(msg.toString())
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -66,20 +75,7 @@ class GameActivity : BaseActivity() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                var direction : String = "up"
-
-                if (playerPadProgress > playerPadProgressInter) {
-                    direction = "down"
-                }
-
-                playerPadProgress = playerPadProgressInter
-
-                var msg : JSONObject = JSONObject()
-                msg.put(KeyValues.K_TYPE.value, KeyValues.K_MOVEMENT.value)
-                msg.put(KeyValues.K_NAME.value, userName)
-                msg.put(KeyValues.K_MESSAGE.value, direction)
-
-                wsClient.send(msg.toString())
+                // Necessary
             }
         })
     }
@@ -104,6 +100,19 @@ class GameActivity : BaseActivity() {
 
             //player2Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
             canvas.updatePlayer2PadPosition(x, y)
+
+        }
+    }
+
+    fun setPlayer1Pos(y : Float) {
+        runOnUiThread {
+            canvas.updatePlayer1PadPosition(y)
+
+        }
+    }
+    fun setPlayer2Pos(y : Float) {
+        runOnUiThread {
+            canvas.updatePlayer2PadPosition(y)
 
         }
     }

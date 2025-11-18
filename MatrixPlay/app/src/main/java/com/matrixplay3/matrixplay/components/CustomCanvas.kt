@@ -108,6 +108,16 @@ class CustomCanvas @JvmOverloads constructor(
         invalidate()
     }
 
+    fun updatePlayer1PadPosition(y : Float) {
+        positionsY.set(0, y)
+        invalidate()
+    }
+
+    fun updatePlayer2PadPosition(y : Float) {
+        positionsY.set(1, y)
+        invalidate()
+    }
+
     fun setPadDimensions(w : Float, h : Float) {
         padWidth = w * width
         padHeight = h * height

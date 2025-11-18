@@ -21,5 +21,5 @@ enum class KeyValues (val value : String) {
     K_CLIENT_TYPE("clientType"),
     K_POSY("posY"),
     K_POSITION("position"),
-    K_MOVEMENT("movement")
+    K_MOVEMENT("movement_android")
 }

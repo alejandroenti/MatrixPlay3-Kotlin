@@ -101,17 +101,18 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                 Log.d("WS Position Changed", json.toString())
 
                 if (playerName.equals(clients.get(0).name)) {
-                    (currentRefActivity as GameActivity).setPlayer1Pos(position)
+                    val posY = position.split(" ")[1].toFloat()
+                    (currentRefActivity as GameActivity).setPlayer1Pos(posY)
                 }
-                else {
-                    (currentRefActivity as GameActivity).setPlayer2Pos(position)
+                else if (playerName.equals(clients.get(1).name)) {
+                    val posY = position.split(" ")[1].toFloat()
+                    (currentRefActivity as GameActivity).setPlayer2Pos(posY)
                 }
             }
 
             KeyValues.K_INITIAL_POSITION.value -> {
                 p1Pos = json.getString(KeyValues.K_PLAYER_1.value)
                 p2Pos = json.getString(KeyValues.K_PLAYER_2.value)
-                Log.d("WS Init Positions", json.toString())
             }
         }
 
