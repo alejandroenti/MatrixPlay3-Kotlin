@@ -10,10 +10,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.matrixplay3.matrixplay.R
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.ball
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.ballRadius
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.clients
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p1Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p2Pos
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.pSize
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.wsClient
 import com.matrixplay3.matrixplay.components.CustomCanvas
@@ -31,6 +34,8 @@ class GameActivity : BaseActivity() {
     private lateinit var rivalPad : SeekBar
     private lateinit var canvas : CustomCanvas
 
+
+
     private var playerPadProgress : Float = 0.5f
     private var playerPadProgressInter : Float = playerPadProgress
     private var responseReceived : Boolean = true
@@ -45,7 +50,7 @@ class GameActivity : BaseActivity() {
             insets
         }
 
-        currentRefActivity = this
+        //currentRefActivity = this
 
         player1Pad = findViewById<SeekBar>(R.id.gamePlayer1ControlPad)
         player2Pad = findViewById<SeekBar>(R.id.gamePlayer2ControlPad)
@@ -55,6 +60,9 @@ class GameActivity : BaseActivity() {
 
         setPlayer1Pos(p1Pos)
         setPlayer2Pos(p2Pos)
+        setPadsSize(pSize)
+        setBallPos(ball)
+        setBallSize(ballRadius)
 
         playerPad.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -115,6 +123,32 @@ class GameActivity : BaseActivity() {
             canvas.updatePlayer2PadPosition(y)
 
         }
+    }
+
+    fun setBallPos(position : String) {
+        runOnUiThread {
+            var coords = position.split(" ")
+            var x = coords[0].toFloat()
+            var y = coords[1].toFloat()
+
+            //player1Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
+            canvas.updateBallPosition(x, y)
+        }
+    }
+
+    private fun setPadsSize(values : String) {
+        runOnUiThread {
+            var coords = values.split(" ")
+            var x = coords[0].toFloat()
+            var y = coords[1].toFloat()
+
+            //player2Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
+            canvas.setPadDimensions(x, y)
+        }
+    }
+
+    private fun setBallSize(r : Float) {
+        canvas.setBallRadius(r)
     }
 
     private fun disablePad() {

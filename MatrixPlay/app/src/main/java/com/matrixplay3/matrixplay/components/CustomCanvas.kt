@@ -24,6 +24,7 @@ class CustomCanvas @JvmOverloads constructor(
     private val STROKE_CANVAS_WIDTH : Int = 2
     private var padWidth : Float = 0.01f
     private var padHeight : Float = 0.2f
+    private var ballRadius : Float = 0.1f
     private val font = ResourcesCompat.getFont(context, R.font.protonerdfontmonoregular)
 
     private var positionsX = arrayOf(0f, 0f, 0f)
@@ -82,6 +83,12 @@ class CustomCanvas @JvmOverloads constructor(
         isAntiAlias = true
     }
 
+    private val ballPaint = Paint().apply {
+        color = ContextCompat.getColor(context, R.color.yellow)
+        style = Paint.Style.FILL
+        isAntiAlias = true
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val w = MeasureSpec.getSize(heightMeasureSpec)
         setMeasuredDimension(w, heightMeasureSpec)
@@ -94,6 +101,7 @@ class CustomCanvas @JvmOverloads constructor(
         drawPlayer1Score(canvas)
         drawPlayer2Score(canvas)
         drawPads(canvas)
+        drawBall(canvas)
     }
 
     fun updatePlayer1PadPosition(x : Float, y : Float) {
@@ -118,9 +126,19 @@ class CustomCanvas @JvmOverloads constructor(
         invalidate()
     }
 
+    fun updateBallPosition(x : Float, y : Float) {
+        positionsX.set(2, x)
+        positionsY.set(2, y)
+        invalidate()
+    }
+
     fun setPadDimensions(w : Float, h : Float) {
-        padWidth = w * width
-        padHeight = h * height
+        padWidth = w
+        padHeight = h
+    }
+
+    fun setBallRadius(r : Float) {
+        ballRadius = r
     }
 
     fun updateScore(pos : Int) {
@@ -149,7 +167,8 @@ class CustomCanvas @JvmOverloads constructor(
     private fun drawPlayer1Score(canvas : Canvas) {
         var x : Float = width * 0.15f
         var y : Float = height * 0.1f
-        canvas.drawText(clients.get(0).name, x, y, namePlayer1Paint)
+        canvas.drawText("Alex", x, y, namePlayer1Paint)
+        //canvas.drawText(clients.get(0).name, x, y, namePlayer1Paint)
 
         x = width * 0.3f
         y = height * 0.9f
@@ -159,7 +178,8 @@ class CustomCanvas @JvmOverloads constructor(
     private fun drawPlayer2Score(canvas : Canvas) {
         var x : Float = width * 0.55f
         var y : Float = height * 0.1f
-        canvas.drawText(clients.get(1).name, x, y, namePlayer2Paint)
+        //canvas.drawText(clients.get(1).name, x, y, namePlayer2Paint)
+        canvas.drawText("Erick", x, y, namePlayer2Paint)
 
         x = width * 0.55f
         y = height * 0.9f
@@ -186,6 +206,18 @@ class CustomCanvas @JvmOverloads constructor(
             x + (padWidth * width),
             y + (padHeight * height),
             padPlayer2Paint
+        )
+    }
+
+    private fun drawBall(canvas : Canvas) {
+        var x : Float = width * positionsX.get(2)
+        var y : Float = height * positionsY.get(2)
+
+        canvas.drawCircle(
+            x,
+            y,
+            ballRadius * width,
+            ballPaint
         )
     }
 }

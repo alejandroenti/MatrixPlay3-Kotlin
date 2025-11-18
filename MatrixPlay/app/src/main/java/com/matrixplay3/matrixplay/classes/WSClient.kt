@@ -4,10 +4,13 @@ import android.util.Log
 import com.matrixplay3.matrixplay.activites.CountdownActivity
 import com.matrixplay3.matrixplay.activites.GameActivity
 import com.matrixplay3.matrixplay.activites.LoginActivity
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.ball
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.ballRadius
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.clients
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p1Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p2Pos
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.pSize
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
 import com.matrixplay3.matrixplay.activites.WaitActivity
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.wsClient
@@ -86,11 +89,6 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                 }
 
                 val value = json.getString(KeyValues.K_VALUE.value)
-                if (value.equals("0")) {
-                    Log.d("Server Communication", "Recevied 0 - Passing to Play")
-                    (currentRefActivity as CountdownActivity).passToGameView()
-                    return
-                }
                 (currentRefActivity as CountdownActivity).updateNumber(value)
             }
 
@@ -113,6 +111,12 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
             KeyValues.K_INITIAL_POSITION.value -> {
                 p1Pos = json.getString(KeyValues.K_PLAYER_1.value)
                 p2Pos = json.getString(KeyValues.K_PLAYER_2.value)
+                pSize = json.getString(KeyValues.K_PLAYERS_SIZE.value)
+                ball = json.getString(KeyValues.K_BALL.value)
+                ballRadius = json.getDouble(KeyValues.K_BALL_RADIUS.value).toFloat()
+
+                Log.d("Server Communication", "Recevied 0 - Passing to Play")
+                (currentRefActivity as CountdownActivity).passToGameView()
             }
         }
 
