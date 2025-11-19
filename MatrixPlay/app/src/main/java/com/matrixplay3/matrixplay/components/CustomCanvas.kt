@@ -214,7 +214,7 @@ class CustomCanvas @JvmOverloads constructor(
         canvas.drawCircle(
             x,
             y,
-            ballRadius * width,
+            (ballRadius / 2) * width,
             ballPaint
         )
     }
