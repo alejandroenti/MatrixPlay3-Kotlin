@@ -167,8 +167,7 @@ class CustomCanvas @JvmOverloads constructor(
     private fun drawPlayer1Score(canvas : Canvas) {
         var x : Float = width * 0.15f
         var y : Float = height * 0.1f
-        canvas.drawText("Alex", x, y, namePlayer1Paint)
-        //canvas.drawText(clients.get(0).name, x, y, namePlayer1Paint)
+        canvas.drawText(clients.get(0).name, x, y, namePlayer1Paint)
 
         x = width * 0.3f
         y = height * 0.9f
@@ -178,8 +177,7 @@ class CustomCanvas @JvmOverloads constructor(
     private fun drawPlayer2Score(canvas : Canvas) {
         var x : Float = width * 0.55f
         var y : Float = height * 0.1f
-        //canvas.drawText(clients.get(1).name, x, y, namePlayer2Paint)
-        canvas.drawText("Erick", x, y, namePlayer2Paint)
+        canvas.drawText(clients.get(1).name, x, y, namePlayer2Paint)
 
         x = width * 0.55f
         y = height * 0.9f
@@ -201,9 +199,9 @@ class CustomCanvas @JvmOverloads constructor(
         x = width * positionsX.get(1)
         y = height * positionsY.get(1)
         canvas.drawRect(
-            x,
+            x - (padWidth * width),
             y,
-            x + (padWidth * width),
+            x,
             y + (padHeight * height),
             padPlayer2Paint
         )
