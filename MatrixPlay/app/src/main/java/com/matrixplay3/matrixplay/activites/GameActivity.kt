@@ -94,9 +94,11 @@ class GameActivity : BaseActivity() {
             var x = coords[0].toFloat()
             var y = coords[1].toFloat()
 
-            //player1Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
             canvas.updatePlayer1PadPosition(x, y)
 
+            if (player2Pad.equals(playerPad)) {
+                player1Pad.progress = SEEKBAR_MULTIPLIER - (y * SEEKBAR_MULTIPLIER).toInt()
+            }
         }
     }
 
@@ -106,9 +108,11 @@ class GameActivity : BaseActivity() {
             var x = coords[0].toFloat()
             var y = coords[1].toFloat()
 
-            //player2Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
             canvas.updatePlayer2PadPosition(x, y)
 
+            if (player1Pad.equals(playerPad)) {
+                player2Pad.progress = SEEKBAR_MULTIPLIER - (y * SEEKBAR_MULTIPLIER).toInt()
+            }
         }
     }
 
@@ -116,12 +120,18 @@ class GameActivity : BaseActivity() {
         runOnUiThread {
             canvas.updatePlayer1PadPosition(y)
 
+            if (player2Pad.equals(playerPad)) {
+                player1Pad.progress = SEEKBAR_MULTIPLIER - (y * SEEKBAR_MULTIPLIER).toInt()
+            }
         }
     }
     fun setPlayer2Pos(y : Float) {
         runOnUiThread {
             canvas.updatePlayer2PadPosition(y)
 
+            if (player1Pad.equals(playerPad)) {
+                player2Pad.progress = SEEKBAR_MULTIPLIER - (y * SEEKBAR_MULTIPLIER).toInt()
+            }
         }
     }
 
@@ -131,7 +141,6 @@ class GameActivity : BaseActivity() {
             var x = coords[0].toFloat()
             var y = coords[1].toFloat()
 
-            //player1Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
             canvas.updateBallPosition(x, y)
         }
     }
@@ -142,7 +151,6 @@ class GameActivity : BaseActivity() {
             var x = coords[0].toFloat()
             var y = coords[1].toFloat()
 
-            //player2Pad.setProgress((y * SEEKBAR_MULTIPLIER).toInt(), true)
             canvas.setPadDimensions(x, y)
         }
     }
