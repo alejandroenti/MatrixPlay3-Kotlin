@@ -21,7 +21,7 @@ class CustomCanvas @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val STROKE_CANVAS_WIDTH : Int = 2
+    private val STROKE_CANVAS_WIDTH : Int = 4
     private var padWidth : Float = 0.01f
     private var padHeight : Float = 0.2f
     private var ballRadius : Float = 0.1f
@@ -190,9 +190,9 @@ class CustomCanvas @JvmOverloads constructor(
 
         canvas.drawRect(
             x,
-            y,
+            y - ((padHeight / 2) * height),
             x + (padWidth * width),
-            y + (padHeight * height),
+            y + ((padHeight / 2) * height),
             padPlayer1Paint
         )
 
@@ -200,9 +200,9 @@ class CustomCanvas @JvmOverloads constructor(
         y = height * positionsY.get(1)
         canvas.drawRect(
             x - (padWidth * width),
-            y,
+            y - ((padHeight / 2) * height),
             x,
-            y + (padHeight * height),
+            y + ((padHeight / 2) * height),
             padPlayer2Paint
         )
     }
