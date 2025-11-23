@@ -11,4 +11,6 @@
     <string name="wait_title">Waiting for players</string>
     <string name="wait_versus_text">VS</string>
     <string name="countdown_title">Game starts in</string>
+    <string name="endgame_btn_exit">Exit App</string>
+    <string name="endgame_btn_play_again">Play Again!</string>
 </resources>
