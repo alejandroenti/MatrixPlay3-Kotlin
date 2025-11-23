@@ -96,7 +96,7 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                 var playerName = json.getString(KeyValues.K_PLAYER_NAME.value)
                 var position = json.getString(KeyValues.K_POSITION.value)
 
-                Log.d("WS Position Changed", json.toString())
+                //Log.d("WS Position Changed", json.toString())
 
                 if (playerName.equals(clients.get(0).name)) {
                     val posY = position.split(" ")[1].toFloat()
@@ -117,6 +117,16 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
 
                 Log.d("Server Communication", "Recevied 0 - Passing to Play")
                 (currentRefActivity as CountdownActivity).passToGameView()
+            }
+
+            KeyValues.K_BALL_POSITION.value -> {
+                var position = json.getString(KeyValues.K_POSITION.value)
+                (currentRefActivity as GameActivity).setBallPos(position)
+            }
+
+            KeyValues.K_GOAL_SCORED.value -> {
+                var playerName = json.getString(KeyValues.K_PLAYER_NAME.value)
+                (currentRefActivity as GameActivity).updateScore(playerName)
             }
         }
 
