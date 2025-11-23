@@ -132,6 +132,11 @@ class CustomCanvas @JvmOverloads constructor(
         invalidate()
     }
 
+    fun updateScore(index : Int) {
+        var goals = scores.get(index);
+        scores.set(index, goals + 1)
+    }
+
     fun setPadDimensions(w : Float, h : Float) {
         padWidth = w
         padHeight = h
@@ -139,11 +144,6 @@ class CustomCanvas @JvmOverloads constructor(
 
     fun setBallRadius(r : Float) {
         ballRadius = r
-    }
-
-    fun updateScore(pos : Int) {
-        var score = scores.get(pos)
-        scores.set(pos, score + 1)
     }
 
     private fun drawBackground(canvas : Canvas) {

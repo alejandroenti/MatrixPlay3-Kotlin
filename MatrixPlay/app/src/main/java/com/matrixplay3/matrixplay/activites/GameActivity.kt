@@ -38,7 +38,6 @@ class GameActivity : BaseActivity() {
 
     private var playerPadProgress : Float = 0.5f
     private var playerPadProgressInter : Float = playerPadProgress
-    private var responseReceived : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,6 +141,15 @@ class GameActivity : BaseActivity() {
             var y = coords[1].toFloat()
 
             canvas.updateBallPosition(x, y)
+        }
+    }
+
+    fun updateScore(playerName : String) {
+        if (playerName.equals(clients.get(0).name)){
+            canvas.updateScore(0)
+        }
+        else {
+            canvas.updateScore(1)
         }
     }
 

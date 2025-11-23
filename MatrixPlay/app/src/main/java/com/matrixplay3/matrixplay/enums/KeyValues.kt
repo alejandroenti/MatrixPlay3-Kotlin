@@ -17,6 +17,8 @@ enum class KeyValues (val value : String) {
     K_PLAYERS_SIZE("playersSize"),
     K_BALL("ball"),
     K_BALL_RADIUS("ballRadius"),
+    K_BALL_POSITION("ballPosition"),
+    K_GOAL_SCORED("goalScored"),
 
     // Client Calls
     K_REGISTER("register"),
