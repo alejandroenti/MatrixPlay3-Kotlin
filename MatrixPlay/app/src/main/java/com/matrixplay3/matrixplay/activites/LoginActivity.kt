@@ -103,6 +103,7 @@ class LoginActivity : BaseActivity() {
 
         if (rejected) {
             showAlertDialog("Party is full. Wait until the actual game ends")
+            rejected = false
         }
     }
 
