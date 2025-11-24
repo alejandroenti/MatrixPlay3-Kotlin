@@ -63,4 +63,13 @@
         <item name="android:progressBackgroundTint">@color/yellow</item>
         <item name="android:progressTint">@color/blue</item>
     </style>
+
+    <style name="style_btn_exit">
+        <item name="android:backgroundTint">@color/red</item>
+        <item name="android:textColor">@color/white_original</item>
+    </style>
+    <style name="style_btn_play_again">
+        <item name="android:backgroundTint">@color/blue</item>
+        <item name="android:textColor">@color/white_original</item>
+    </style>
 </resources>

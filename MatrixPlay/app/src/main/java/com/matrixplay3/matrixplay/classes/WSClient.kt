@@ -11,7 +11,11 @@ import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefAc
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p1Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p2Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.pSize
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.rejected
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP1
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP2
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.winner
 import com.matrixplay3.matrixplay.activites.WaitActivity
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.wsClient
 import com.matrixplay3.matrixplay.enums.KeyValues
@@ -23,7 +27,6 @@ import java.net.URI
 
 
 open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
-
     override fun onOpen(handshakedata: ServerHandshake?) {
         Log.d("WSConnection", "[*] Opened Connection!")
 
@@ -112,10 +115,8 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                 p1Pos = json.getString(KeyValues.K_PLAYER_1.value)
                 p2Pos = json.getString(KeyValues.K_PLAYER_2.value)
                 pSize = json.getString(KeyValues.K_PLAYERS_SIZE.value)
-                ball = json.getString(KeyValues.K_BALL.value)
                 ballRadius = json.getDouble(KeyValues.K_BALL_RADIUS.value).toFloat()
 
-                Log.d("Server Communication", "Recevied 0 - Passing to Play")
                 (currentRefActivity as CountdownActivity).passToGameView()
             }
 
@@ -127,6 +128,17 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
             KeyValues.K_GOAL_SCORED.value -> {
                 var playerName = json.getString(KeyValues.K_PLAYER_NAME.value)
                 (currentRefActivity as GameActivity).updateScore(playerName)
+            }
+
+            KeyValues.K_GAME_OVER.value -> {
+                winner = json.getString(KeyValues.K_WINNER.value)
+                scoreP1 = json.getInt(KeyValues.K_SCORE_P1.value)
+                scoreP2 = json.getInt(KeyValues.K_SCORE_P2.value)
+                (currentRefActivity as GameActivity).passToEndGame()
+            }
+
+            KeyValues.K_REJECT.value -> {
+                rejected = true
             }
         }
 

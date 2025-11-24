@@ -1,5 +1,6 @@
 package com.matrixplay3.matrixplay.activites
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -60,7 +61,6 @@ class GameActivity : BaseActivity() {
         setPlayer1Pos(p1Pos)
         setPlayer2Pos(p2Pos)
         setPadsSize(pSize)
-        setBallPos(ball)
         setBallSize(ballRadius)
 
         playerPad.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -145,12 +145,19 @@ class GameActivity : BaseActivity() {
     }
 
     fun updateScore(playerName : String) {
-        if (playerName.equals(clients.get(0).name)){
-            canvas.updateScore(0)
+        runOnUiThread {
+            if (playerName.equals(clients.get(0).name)) {
+                canvas.updateScore(0)
+            } else {
+                canvas.updateScore(1)
+            }
         }
-        else {
-            canvas.updateScore(1)
-        }
+    }
+
+    fun passToEndGame() {
+        val intent = Intent(this, EndGameActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun setPadsSize(values : String) {
