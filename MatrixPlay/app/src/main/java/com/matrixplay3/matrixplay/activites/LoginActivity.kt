@@ -90,6 +90,7 @@ class LoginActivity : BaseActivity() {
                 if (username.text!!.length <= USERNAME_MAX_LENGTH) {
                     // Connect To Server
                     userName = username.text!!.toString()
+                    url = serverUrl.text!!.toString()
                     attemptConnection()
                 }
                 else {
