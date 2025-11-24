@@ -25,7 +25,8 @@ import java.net.URI
 class LoginActivity : BaseActivity() {
 
     companion object {
-        lateinit var userName : String
+        var userName : String = ""
+        var url : String = ""
         var clients : ArrayList<ClientData> = ArrayList<ClientData>();
         var currentRefActivity : BaseActivity? = null
 
@@ -71,6 +72,9 @@ class LoginActivity : BaseActivity() {
         serverUrl = findViewById<TextInputEditText>(R.id.loginURL)
         btnConnect = findViewById<Button>(R.id.loginBtnConnect)
         logo = findViewById<ImageView>(R.id.loginLogo)
+
+        username.setText(userName)
+        serverUrl.setText(url)
 
         val bitmap = BitmapFactory.decodeStream( assets.open("logo.png") )
         logo.setImageBitmap( bitmap )
