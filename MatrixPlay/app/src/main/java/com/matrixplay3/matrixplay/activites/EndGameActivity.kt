@@ -13,6 +13,7 @@ import com.matrixplay3.matrixplay.R
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP1
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP2
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.winner
+import com.matrixplay3.matrixplay.classes.WSManager.Companion.wsClient
 
 class EndGameActivity : BaseActivity() {
 
@@ -46,6 +47,8 @@ class EndGameActivity : BaseActivity() {
 
         val bitmap = BitmapFactory.decodeStream( assets.open("logo.png") )
         logo.setImageBitmap( bitmap )
+
+        wsClient.close()
 
         btnPlay.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
