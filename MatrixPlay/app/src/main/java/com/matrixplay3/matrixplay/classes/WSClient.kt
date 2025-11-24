@@ -11,7 +11,10 @@ import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefAc
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p1Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p2Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.pSize
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP1
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP2
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.winner
 import com.matrixplay3.matrixplay.activites.WaitActivity
 import com.matrixplay3.matrixplay.classes.WSManager.Companion.wsClient
 import com.matrixplay3.matrixplay.enums.KeyValues
@@ -124,6 +127,13 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
             KeyValues.K_GOAL_SCORED.value -> {
                 var playerName = json.getString(KeyValues.K_PLAYER_NAME.value)
                 (currentRefActivity as GameActivity).updateScore(playerName)
+            }
+
+            KeyValues.K_GAME_OVER.value -> {
+                winner = json.getString(KeyValues.K_WINNER.value)
+                scoreP1 = json.getInt(KeyValues.K_SCORE_P1.value)
+                scoreP2 = json.getInt(KeyValues.K_SCORE_P2.value)
+                (currentRefActivity as GameActivity).passToEndGame()
             }
         }
 

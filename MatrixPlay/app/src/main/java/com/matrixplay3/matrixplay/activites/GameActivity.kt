@@ -1,5 +1,6 @@
 package com.matrixplay3.matrixplay.activites
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -151,6 +152,12 @@ class GameActivity : BaseActivity() {
                 canvas.updateScore(1)
             }
         }
+    }
+
+    fun passToEndGame() {
+        val intent = Intent(this, EndGameActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun setPadsSize(values : String) {

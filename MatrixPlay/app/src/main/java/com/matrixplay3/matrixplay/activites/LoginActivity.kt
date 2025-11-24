@@ -36,6 +36,10 @@ class LoginActivity : BaseActivity() {
         lateinit var ball : String
         var ballRadius : Float = 0.05f
 
+        lateinit var winner : String
+        var scoreP1 : Int = 0
+        var scoreP2: Int = 0
+
         public fun connectWS(uri : String) {
             var uri : URI = URI(uri)
             wsClient = WSClient(uri)

@@ -41,7 +41,7 @@ class EndGameActivity : BaseActivity() {
         logo.setImageBitmap( bitmap )
 
         btnPlay.setOnClickListener {
-            val intent = Intent(this, WaitActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
