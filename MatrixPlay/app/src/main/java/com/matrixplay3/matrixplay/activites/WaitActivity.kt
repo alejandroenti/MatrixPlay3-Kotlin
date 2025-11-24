@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.matrixplay3.matrixplay.R
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.clients
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.rejected
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,6 +41,10 @@ class WaitActivity : BaseActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        if (rejected) {
+            passToLogin()
         }
 
         currentRefActivity = this

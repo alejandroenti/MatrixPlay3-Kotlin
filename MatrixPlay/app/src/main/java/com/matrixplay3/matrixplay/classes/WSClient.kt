@@ -11,6 +11,7 @@ import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefAc
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p1Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.p2Pos
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.pSize
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.rejected
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP1
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP2
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
@@ -137,8 +138,7 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
             }
 
             KeyValues.K_REJECT.value -> {
-                (currentRefActivity as WaitActivity).passToLogin()
-                (currentRefActivity as LoginActivity).showAlertDialog("Party is full")
+                rejected = true
             }
         }
 

@@ -27,6 +27,8 @@ class LoginActivity : BaseActivity() {
     companion object {
         var userName : String = ""
         var url : String = ""
+
+        var rejected : Boolean = false
         var clients : ArrayList<ClientData> = ArrayList<ClientData>();
         var currentRefActivity : BaseActivity? = null
 
@@ -97,6 +99,10 @@ class LoginActivity : BaseActivity() {
                     showAlertDialog(R.string.login_alert_dialog_message_username)
                 }
             }
+        }
+
+        if (rejected) {
+            showAlertDialog("Party is full. Wait until the actual game ends")
         }
     }
 
