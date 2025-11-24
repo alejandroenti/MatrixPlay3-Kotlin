@@ -60,7 +60,6 @@ class GameActivity : BaseActivity() {
         setPlayer1Pos(p1Pos)
         setPlayer2Pos(p2Pos)
         setPadsSize(pSize)
-        setBallPos(ball)
         setBallSize(ballRadius)
 
         playerPad.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -145,11 +144,12 @@ class GameActivity : BaseActivity() {
     }
 
     fun updateScore(playerName : String) {
-        if (playerName.equals(clients.get(0).name)){
-            canvas.updateScore(0)
-        }
-        else {
-            canvas.updateScore(1)
+        runOnUiThread {
+            if (playerName.equals(clients.get(0).name)) {
+                canvas.updateScore(0)
+            } else {
+                canvas.updateScore(1)
+            }
         }
     }
 

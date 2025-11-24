@@ -23,7 +23,6 @@ import java.net.URI
 
 
 open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
-
     override fun onOpen(handshakedata: ServerHandshake?) {
         Log.d("WSConnection", "[*] Opened Connection!")
 
@@ -112,10 +111,8 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                 p1Pos = json.getString(KeyValues.K_PLAYER_1.value)
                 p2Pos = json.getString(KeyValues.K_PLAYER_2.value)
                 pSize = json.getString(KeyValues.K_PLAYERS_SIZE.value)
-                ball = json.getString(KeyValues.K_BALL.value)
                 ballRadius = json.getDouble(KeyValues.K_BALL_RADIUS.value).toFloat()
 
-                Log.d("Server Communication", "Recevied 0 - Passing to Play")
                 (currentRefActivity as CountdownActivity).passToGameView()
             }
 
