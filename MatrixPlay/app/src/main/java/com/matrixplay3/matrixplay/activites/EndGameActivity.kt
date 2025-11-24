@@ -10,6 +10,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.matrixplay3.matrixplay.R
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP1
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.scoreP2
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.winner
 
 class EndGameActivity : BaseActivity() {
 
@@ -34,6 +37,10 @@ class EndGameActivity : BaseActivity() {
         logo = findViewById<ImageView>(R.id.endgameLogo)
         btnPlay = findViewById<Button>(R.id.endgameBtnPlay)
         btnExit = findViewById<Button>(R.id.endgameBtnExit)
+
+
+        result.text = winner + " wins!\n " + scoreP1 + " - " + scoreP2
+        resultShadow.text = winner + " wins!\n " + scoreP1 + " - " + scoreP2
 
         changeResult()
 
