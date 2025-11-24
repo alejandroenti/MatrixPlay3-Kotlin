@@ -135,6 +135,11 @@ open class WSClient(serverUri : URI) : WebSocketClient(serverUri) {
                 scoreP2 = json.getInt(KeyValues.K_SCORE_P2.value)
                 (currentRefActivity as GameActivity).passToEndGame()
             }
+
+            KeyValues.K_REJECT.value -> {
+                (currentRefActivity as WaitActivity).passToLogin()
+                (currentRefActivity as LoginActivity).showAlertDialog("Party is full")
+            }
         }
 
     }

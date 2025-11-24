@@ -24,6 +24,7 @@ enum class KeyValues (val value : String) {
     K_LOSER("loser"),
     K_SCORE_P1("scoreP1"),
     K_SCORE_P2("scoreP2"),
+    K_REJECT("rejectPlayer"),
 
     // Client Calls
     K_REGISTER("register"),

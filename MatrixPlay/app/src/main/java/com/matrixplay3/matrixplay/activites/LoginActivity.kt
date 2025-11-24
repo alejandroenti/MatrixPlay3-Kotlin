@@ -114,6 +114,16 @@ class LoginActivity : BaseActivity() {
             .show()
     }
 
+    fun showAlertDialog(message : String) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.app_name)
+            .setMessage(message)
+            .setPositiveButton(R.string.login_alert_dialog_accept) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
     private fun attemptConnection() {
         val usernameStr = username.text.toString()
         val serverStr = serverUrl.text.toString()

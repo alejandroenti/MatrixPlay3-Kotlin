@@ -53,6 +53,8 @@ class WaitActivity : BaseActivity() {
         player1Name = findViewById<TextView>(R.id.waitNamePlayer1)
         player2Name = findViewById<TextView>(R.id.waitNamePlayer2)
 
+        player2Name.text = "..."
+
         players = arrayListOf(player1Name, player2Name)
 
         startDotAnimation(title, getString(R.string.wait_title))
@@ -111,6 +113,14 @@ class WaitActivity : BaseActivity() {
     fun passToCountdown() {
         runOnUiThread {
             val intent = Intent(this, CountdownActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    fun passToLogin() {
+        runOnUiThread {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
