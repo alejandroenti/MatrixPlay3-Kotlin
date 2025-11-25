@@ -25,9 +25,23 @@ import java.net.URI
 class LoginActivity : BaseActivity() {
 
     companion object {
-        lateinit var userName : String
+        var userName : String = ""
+        var url : String = ""
+
+        var rejected : Boolean = false
         var clients : ArrayList<ClientData> = ArrayList<ClientData>();
         var currentRefActivity : BaseActivity? = null
+
+        lateinit var p1Pos : String
+        lateinit var p2Pos : String
+
+        lateinit var pSize : String
+        lateinit var ball : String
+        var ballRadius : Float = 0.05f
+
+        lateinit var winner : String
+        var scoreP1 : Int = 0
+        var scoreP2: Int = 0
 
         public fun connectWS(uri : String) {
             var uri : URI = URI(uri)
@@ -61,6 +75,9 @@ class LoginActivity : BaseActivity() {
         btnConnect = findViewById<Button>(R.id.loginBtnConnect)
         logo = findViewById<ImageView>(R.id.loginLogo)
 
+        username.setText(userName)
+        serverUrl.setText(url)
+
         val bitmap = BitmapFactory.decodeStream( assets.open("logo.png") )
         logo.setImageBitmap( bitmap )
 
@@ -75,12 +92,18 @@ class LoginActivity : BaseActivity() {
                 if (username.text!!.length <= USERNAME_MAX_LENGTH) {
                     // Connect To Server
                     userName = username.text!!.toString()
+                    url = serverUrl.text!!.toString()
                     attemptConnection()
                 }
                 else {
                     showAlertDialog(R.string.login_alert_dialog_message_username)
                 }
             }
+        }
+
+        if (rejected) {
+            showAlertDialog("Party is full. Wait until the actual game ends")
+            rejected = false
         }
     }
 
@@ -92,6 +115,16 @@ class LoginActivity : BaseActivity() {
         AlertDialog.Builder(this)
             .setTitle(R.string.app_name)
             .setMessage(getString(messageId))
+            .setPositiveButton(R.string.login_alert_dialog_accept) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    fun showAlertDialog(message : String) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.app_name)
+            .setMessage(message)
             .setPositiveButton(R.string.login_alert_dialog_accept) { dialog, _ ->
                 dialog.dismiss()
             }

@@ -57,10 +57,16 @@
 
     <style name="style_pad_p1">
         <item name="android:thumbTint">@color/red</item>
+
     </style>
     <style name="style_pad_p2">
         <item name="android:thumbTint">@color/blue</item>
     </style>
 
-
+    <style name="style_btn_exit">
+        <item name="android:backgroundTint">@color/red</item>
+    </style>
+    <style name="style_btn_play_again">
+        <item name="android:backgroundTint">@color/blue</item>
+    </style>
 </resources>
