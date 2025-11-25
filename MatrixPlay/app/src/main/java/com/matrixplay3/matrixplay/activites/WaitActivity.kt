@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.matrixplay3.matrixplay.R
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.clients
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.currentRefActivity
+import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.rejected
 import com.matrixplay3.matrixplay.activites.LoginActivity.Companion.userName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,10 @@ class WaitActivity : BaseActivity() {
             insets
         }
 
+        if (rejected) {
+            passToLogin()
+        }
+
         currentRefActivity = this
 
         title = findViewById<TextView>(R.id.waitTitle)
@@ -52,6 +57,8 @@ class WaitActivity : BaseActivity() {
         player2Image = findViewById<ImageView>(R.id.waitImagePlayer2)
         player1Name = findViewById<TextView>(R.id.waitNamePlayer1)
         player2Name = findViewById<TextView>(R.id.waitNamePlayer2)
+
+        player2Name.text = "..."
 
         players = arrayListOf(player1Name, player2Name)
 
@@ -111,6 +118,14 @@ class WaitActivity : BaseActivity() {
     fun passToCountdown() {
         runOnUiThread {
             val intent = Intent(this, CountdownActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    fun passToLogin() {
+        runOnUiThread {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

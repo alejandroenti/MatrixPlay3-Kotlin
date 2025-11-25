@@ -14,7 +14,6 @@
         android:layout_marginStart="-90dp"
         android:orientation="vertical"
         android:progress="50"
-        android:progressBackgroundTint="@color/black"
         android:rotation="270"
         android:scrollIndicators="start"
         android:scrollbars="vertical"
